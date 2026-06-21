@@ -1,0 +1,12 @@
+{
+  "name": "mirrortv-dlna-service",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot index.ts"
+  },
+  "dependencies": {
+    "node-ssdp": "^4.0.1",
+    "upnp-mediarenderer-client": "^1.4.0"
+  }
+}

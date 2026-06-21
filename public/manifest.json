@@ -1,0 +1,51 @@
+{
+  "name": "MirrorTV — Espelhar Celular para Smart TV",
+  "short_name": "MirrorTV",
+  "description": "Espelhe a tela do seu Android para qualquer Smart TV via Chromecast, DLNA ou WebRTC.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f1a",
+  "theme_color": "#0b0f1a",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["entertainment", "utilities", "video"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Espelhar via Chromecast",
+      "short_name": "Cast",
+      "url": "/?protocol=cast"
+    },
+    {
+      "name": "Espelhar via DLNA",
+      "short_name": "DLNA",
+      "url": "/?protocol=dlna"
+    },
+    {
+      "name": "Espelhar via WebRTC",
+      "short_name": "WebRTC",
+      "url": "/?protocol=webrtc"
+    }
+  ]
+}

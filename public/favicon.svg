@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    
+    <defs>
+      <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6d28d9"/>
+        <stop offset="55%" stop-color="#9333ea"/>
+        <stop offset="100%" stop-color="#06b6d4"/>
+      </linearGradient>
+      <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#a5b4fc"/>
+        <stop offset="100%" stop-color="#67e8f9"/>
+      </linearGradient>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect x="3.84" y="3.84" width="56.32" height="56.32" rx="12.3904" fill="url(#bg)"/>
+  
+    
+    <rect x="17.28" y="17.92" width="29.44" height="20.48" rx="2.4576"
+      fill="none" stroke="url(#stroke)" stroke-width="1.6" filter="url(#glow)"/>
+    <rect x="28.7616" y="40.96000000000001" width="6.4768" height="3.2"
+      rx="0.768" fill="url(#stroke)"/>
+    <path d="M 36.416 49.92
+             Q 45.248000000000005 49.92 45.248000000000005 40.96000000000001"
+      fill="none" stroke="#67e8f9" stroke-width="1.92" stroke-linecap="round" filter="url(#glow)"/>
+    <polygon points="45.248000000000005,39.68000000000001 42.5984,44.800000000000004 46.72,44.800000000000004"
+      fill="#67e8f9" filter="url(#glow)"/>
+    <circle cx="26.7008" cy="28.160000000000004" r="2.56" fill="#a5b4fc" opacity="0.9"/>
+  
+  </svg>
