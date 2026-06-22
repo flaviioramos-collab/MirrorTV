@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { Suspense, useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
@@ -48,7 +48,7 @@ const PROTOCOL_META: Record<
   webrtc: { label: "WebRTC P2P", short: "WebRTC", icon: Radio },
 };
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const initialProtocol = (searchParams.get("protocol") as ProtocolId) || "cast";
   const [protocol, setProtocol] = useState<ProtocolId>(
@@ -275,4 +275,13 @@ export default function Home() {
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+}
+
+// Wrapper com Suspense para evitar SSR mismatch
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Carregando...</div>}>
+      <HomeContent />
+    </Suspense>
+  );
 }

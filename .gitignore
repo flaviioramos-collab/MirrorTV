@@ -49,6 +49,19 @@ dev.out.log
 test
 prompt
 
+# Capacitor/Android
+android/
+ios/
+.gradle/
+build/
+*.apk
+*.aab
+capacitor.config.ts
+.idea/
+.project
+.classpath
+Thumbs.db
+
 server.log
 # Skills directory
 /skills/
