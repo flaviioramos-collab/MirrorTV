@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>MirrorTV APK Quickstart</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-bg: #f4f5f5;
+    --c-text: #131515;
+    --c-muted: #747b7e;
+    --c-mid: #32454e;
+    --c-accent: #1f6c92;
+    --c-accent-2: #c23a50;
+    --c-border: #acbdc5;
+    --c-surface: #e8eaeb;
+  }
+  @page { size: 794px 1123px; margin: 0; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 794px;
+    height: 1123px;
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .poster {
+    position: relative;
+    width: 794px;
+    height: 1123px;
+    background: var(--c-bg);
+    overflow: hidden;
+  }
+  /* Layer 1 - Background grid */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(31, 108, 146, 0.04) 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, rgba(31, 108, 146, 0.04) 0.5px, transparent 0.5px);
+    background-size: 50px 50px;
+    z-index: 1;
+  }
+  /* Layer 2 - Structural anchor line */
+  .anchor-line {
+    position: absolute;
+    left: 95.3px; /* 0.12 * 794 */
+    top: 112.3px; /* 0.10 * 1123 */
+    width: 6px;
+    height: 898.4px; /* 0.80 * 1123 */
+    background: var(--c-accent);
+    z-index: 2;
+  }
+  /* Top horizontal accent */
+  .top-accent {
+    position: absolute;
+    left: 145.3px;
+    top: 60px;
+    width: 100px;
+    height: 2px;
+    background: var(--c-accent-2);
+    z-index: 2;
+  }
+  /* Top-right brand mark */
+  .brand-mark {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: var(--c-mid);
+    text-transform: uppercase;
+    z-index: 3;
+  }
+  .brand-mark .dot {
+    width: 12px;
+    height: 12px;
+    background: var(--c-accent);
+    border-radius: 3px;
+  }
+  /* Layer 3 - Content */
+  .content {
+    position: absolute;
+    left: 145.3px; /* 95.3 (anchor) + 6 (line) + 44 (gap > 1U) */
+    right: 60px;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+  /* Drawer A - Kicker */
+  .kicker {
+    position: absolute;
+    top: 168px; /* 0.15 * 1123 */
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--c-mid);
+    opacity: 0.65;
+  }
+  /* Drawer B - Hero Title */
+  .hero {
+    position: absolute;
+    top: 290px; /* ~0.26 H */
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--c-text);
+    letter-spacing: -1.5px;
+  }
+  .hero .accent {
+    color: var(--c-accent);
+  }
+  .hero-sub {
+    position: absolute;
+    top: 460px;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--c-mid);
+    letter-spacing: -0.5px;
+  }
+  /* Drawer C - Summary */
+  .summary {
+    position: absolute;
+    top: 580px; /* ~0.52 H */
+    width: 480px; /* W * 0.60 */
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--c-text);
+    opacity: 0.82;
+  }
+  .summary strong {
+    color: var(--c-accent);
+    font-weight: 600;
+  }
+  /* Drawer D - Meta */
+  .meta {
+    position: absolute;
+    top: 920px; /* ~0.82 H */
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    opacity: 0.7;
+  }
+  .meta-value {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--c-text);
+  }
+  /* Bottom-right badge */
+  .badge {
+    position: absolute;
+    bottom: 90px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    background: var(--c-text);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    z-index: 3;
+  }
+  .badge .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c-accent-2);
+  }
+  /* Bottom-left footer */
+  .footer {
+    position: absolute;
+    bottom: 30px;
+    left: 145.3px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    opacity: 0.65;
+  }
+  /* Hero stat numbers — three quick KPIs near the title */
+  .stats {
+    position: absolute;
+    top: 760px;
+    display: flex;
+    gap: 50px;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 14px;
+    border-left: 2px solid var(--c-accent);
+  }
+  .stat-num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--c-text);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="grid-bg"></div>
+  <div class="anchor-line"></div>
+  <div class="top-accent"></div>
+
+  <div class="brand-mark">
+    <div class="dot"></div>
+    <span>MirrorTV</span>
+  </div>
+
+  <div class="content">
+    <div class="kicker">Guia Quickstart · PWA para APK</div>
+
+    <div class="hero">
+      De PWA<br>
+      para <span class="accent">APK</span><br>
+      Android
+    </div>
+
+    <div class="hero-sub">3 métodos comparados.<br>1 recomendado.</div>
+
+    <div class="summary">
+      Passo a passo para transformar a PWA <strong>MirrorTV</strong> em um
+      APK instalável no Android — desde a publicação na <strong>Vercel</strong>
+      até o download do pacote no <strong>PWABuilder</strong> e a instalação
+      no celular. Sem Android Studio, sem código nativo, em menos de 30 minutos.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">30 min</div>
+        <div class="stat-label">Tempo total</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Custo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Métodos</div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div class="meta-block">
+        <div class="meta-label">Versão</div>
+        <div class="meta-value">1.0 · 2026</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Plataforma</div>
+        <div class="meta-value">Android 9+</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Página</div>
+        <div class="meta-value">Quickstart</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="badge">
+    <div class="pulse"></div>
+    Instalável como app nativo
+  </div>
+
+  <div class="footer">Tech quickstart · PT-BR · Vercel + PWABuilder</div>
+</div>
+</body>
+</html>
