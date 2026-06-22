@@ -2,7 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next/standalone",
   "framework": "nextjs",
-  "nodeVersion": "18.x",
   "env": {
     "NODE_ENV": "production"
   },
